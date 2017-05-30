@@ -5,12 +5,33 @@ Middleware is lightweight http request dispatcher created for native application
 
 Lightweight means without dependencies in pure modern js
 
+# Install
+
+```
+npm install --save redux-native-api-middleware
+```
+
+# Adding middleware to redux store
+
+store
+```js
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import apiMiddleware from 'redux-native-api-middleware';
+import reducers from './reducers';
+
+const reducer = combineReducers(reducers);
+const initialState = {};
+
+const store = createStore(reducer, initialState, applyMiddleware(
+    middelware,
+));
+```
 
 # Examples
 
 Simple Action
 ```js
-import API_REQUEST from 'redux-native-api-middleware';
+import { API_REQUEST } from 'redux-native-api-middleware'
 
 function action() {
     return {
@@ -27,7 +48,7 @@ function action() {
 
 Full Action
 ```js
-import API_REQUEST from 'redux-native-api-middleware';
+import { API_REQUEST } from 'redux-native-api-middleware';
 
 function action() {
     return {
