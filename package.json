@@ -1,0 +1,50 @@
+{
+  "name": "redux-native-api-middleware",
+  "version": "1.0.0",
+  "description": "Dispatch Everything!",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "jest --no-cache --coverage --coverageReporters html",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfirek/redux-native-api-middleware.git"
+  },
+  "keywords": [
+    "redux",
+    "native",
+    "fetch",
+    "api",
+    "middleware"
+  ],
+  "author": "Lukasz Firek <lukasz@minding.pl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lfirek/redux-native-api-middleware/issues"
+  },
+  "homepage": "https://github.com/lfirek/redux-native-api-middleware#readme",
+  "devDependencies": {
+    "@types/jest": "^19.2.3",
+    "@types/nock": "^8.2.1",
+    "@types/redux-mock-store": "0.0.7",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^20.0.4",
+    "nock": "^9.0.13",
+    "redux-mock-store": "^1.2.3",
+    "ts-jest": "^20.0.5",
+    "typescript": "^2.3.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  }
+}
