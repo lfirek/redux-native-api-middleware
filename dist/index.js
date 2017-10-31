@@ -18,6 +18,7 @@ export default function apiMiddleware() {
             return next(action);
         }
         const request = action[API_REQUEST];
+        let additional = request.additional;
         try {
             const response = yield fetch(request.url, {
                 method: request.method ? request.method : "GET",
@@ -29,12 +30,14 @@ export default function apiMiddleware() {
                 return next({
                     type: request.action && request.action.failure ? request.action.failure : TYPE.failure,
                     payload: data,
+                    additional: additional,
                     error: true
                 });
             }
             return next({
                 type: request.action && request.action.success ? request.action.success : TYPE.success,
                 payload: data,
+                additional: additional,
                 error: false
             });
         }
@@ -42,6 +45,7 @@ export default function apiMiddleware() {
             return next({
                 type: request.action && request.action.error ? request.action.error : TYPE.error,
                 payload: e,
+                additional: additional,
                 error: true
             });
         }
