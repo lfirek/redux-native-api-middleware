@@ -36,7 +36,7 @@ import { API_REQUEST } from 'redux-native-api-middleware'
 function action() {
     return {
             [API_REQUEST]: {
-                url: 'http://www.example.com/resource',
+                url: 'http://www.example.com/resource/123',
                 method: "GET",
                 headers: {
                   'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ import { API_REQUEST } from 'redux-native-api-middleware';
 function action() {
     return {
             [API_REQUEST]: {
-                url: 'http://www.example.com/resource',
+                url: 'http://www.example.com/resource/123',
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json'
@@ -66,6 +66,9 @@ function action() {
                         success: "SUCCESS",
                         failure: "FAILURE",
                         error: "ERROR"
+                },
+                additional  : {
+                    resource : 123
                 }
                 
             }
@@ -79,6 +82,7 @@ Action Response Interface
 interface Action {
     type: string
     payload: any
+    additional: any
     error: boolean
 }
 ```
@@ -93,6 +97,7 @@ Type success means your request get HTTP status code 200 without any other error
 Action {
     type = action.success
     payload = JSON parsed response
+    additional = additional data
     error = false
 }
 ```
@@ -105,6 +110,7 @@ Type failure means your request not get HTTP status code 200 without any other e
 Action {
     type = action.failure
     payload = JSON parsed response
+    additional = additional data
     error = true
 }
 ```
@@ -117,6 +123,7 @@ Type error means we got exception on some point of code (ex. response parsing)
 Action {
     type = action.error
     payload = ERROR object
+    additional = additional data
     error = true
 }
 ```

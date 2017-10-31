@@ -8,6 +8,7 @@ export const TYPE = {
 export interface Action {
     type: string
     payload: any
+    additional: any
     error: boolean
 }
 
@@ -18,6 +19,7 @@ export default function apiMiddleware() {
         }
 
         const request = action[API_REQUEST];
+        let additional = request.additional;
 
         try {
             const response = await fetch(request.url, {
@@ -32,6 +34,7 @@ export default function apiMiddleware() {
                 return next({
                     type: request.action && request.action.failure ? request.action.failure : TYPE.failure,
                     payload: data,
+                    additional: additional,
                     error: true
                 })
             }
@@ -40,12 +43,14 @@ export default function apiMiddleware() {
                 ({
                     type: request.action && request.action.success ? request.action.success : TYPE.success,
                     payload: data,
+                    additional: additional,
                     error: false
                 })
         } catch (e) {
             return next({
                 type: request.action && request.action.error ? request.action.error : TYPE.error,
                 payload: e,
+                additional: additional,
                 error: true
             })
         }

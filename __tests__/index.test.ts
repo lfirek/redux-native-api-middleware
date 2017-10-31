@@ -35,7 +35,7 @@ describe("Test Case", () => {
 
         return store.dispatch(middlewareRequest).then(function () {
             const actions = store.getActions()
-            const expectedPayload = { type: TYPE.success, payload: response, error: false }
+            const expectedPayload = { type: TYPE.success, payload: response, additional: undefined, error: false }
             expect(actions).toEqual([expectedPayload])
         })
     })
@@ -68,7 +68,7 @@ describe("Test Case", () => {
 
         return store.dispatch(middlewareRequest).then(function () {
             const actions = store.getActions()
-            const expectedPayload = { type: TYPE.failure, payload: response, error: true }
+            const expectedPayload = { type: TYPE.failure, payload: response, additional: undefined, error: true }
             expect(actions).toEqual([expectedPayload])
         })
     })
@@ -99,6 +99,7 @@ describe("Test Case", () => {
             const actions = store.getActions()
             expect(actions[0].type).toEqual(TYPE.error)
             expect(actions[0].error).toEqual(true)
+            expect(actions[0].additional).toEqual(undefined)
             expect(actions[0].payload).toBeInstanceOf(Error)
         })
     })
@@ -144,7 +145,7 @@ describe("Test Case", () => {
             return store.dispatch(middlewareRequest)
         }).then(function () {
             const actions = store.getActions()
-            const expectedPayload = { type: TYPE.success, payload: response, error: false }
+            const expectedPayload = { type: TYPE.success, payload: response, additional: undefined, error: false }
             expect(actions).toEqual([action, expectedPayload])
         })
     })
